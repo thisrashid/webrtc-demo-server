@@ -4,10 +4,10 @@ const http = require("http");
 // const https = require("https");
 const fs = require("fs");
 
-const options = {
-  key: fs.readFileSync("./ssl/localhost.key"),
-  cert: fs.readFileSync("./ssl/localhost.crt"),
-};
+// const options = {
+//   key: fs.readFileSync("./ssl/localhost.key"),
+//   cert: fs.readFileSync("./ssl/localhost.crt"),
+// };
 
 // const server = https.createServer(options, (req, res) => {
 //   res.writeHead(200);
