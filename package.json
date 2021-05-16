@@ -1,0 +1,15 @@
+{
+  "name": "webrtc-demo",
+  "version": "0.0.0",
+  "description": "WebRTC Demo",
+  "main": "./src/server.js",
+  "author": "Rashid Azar",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node ./src/server.js"
+  },
+  "dependencies": {
+    "websocket": "^1.0.34"
+  }
+}
