@@ -1,6 +1,6 @@
 const Socket = require("websocket").server;
 const http = require("http");
-
+const StaticServer = require("node-static").Server;
 // const https = require("https");
 const fs = require("fs");
 
@@ -13,12 +13,30 @@ const fs = require("fs");
 //   res.writeHead(200);
 //   res.end("hello world\n");
 // });
+
+const fileServer = new StaticServer("./public");
+
 const server = http.createServer((req, res) => {
-  res.writeHead(200);
-  res.end("hello world\n");
+  req
+    .addListener("end", function () {
+      fileServer.serve(req, res, function (e, result) {
+        if (e && e.status === 404) {
+          // If the file wasn't found
+          if (req.url === "/") {
+            fileServer.serveFile("/index.html", 200, {}, req, res);
+          } else {
+            res.writeHead(404);
+            res.end("404 Not Found\n");
+          }
+        }
+      });
+    })
+    .resume();
+  // res.writeHead(200);
+  // res.end("hello world\n");
 });
 
-server.listen(process.env.PORT || 4000, () => {
+server.listen(process.env.PORT || 4001, () => {
   console.log("Listening on port 4000...");
 });
 
