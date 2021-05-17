@@ -21,13 +21,7 @@ const server = http.createServer((req, res) => {
     .addListener("end", function () {
       fileServer.serve(req, res, function (e, result) {
         if (e && e.status === 404) {
-          // If the file wasn't found
-          if (req.url === "/") {
-            fileServer.serveFile("/index.html", 200, {}, req, res);
-          } else {
-            res.writeHead(404);
-            res.end("404 Not Found\n");
-          }
+          fileServer.serveFile("/index.html", 200, {}, req, res);
         }
       });
     })
@@ -36,7 +30,7 @@ const server = http.createServer((req, res) => {
   // res.end("hello world\n");
 });
 
-server.listen(process.env.PORT || 4001, () => {
+server.listen(process.env.PORT || 4000, () => {
   console.log("Listening on port 4000...");
 });
 
